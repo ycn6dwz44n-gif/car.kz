@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>AURA Motors — Автосалон</title>
+<style>
+:root{--bg:#f4f5f7;--surface:#fff;--text:#111318;--muted:#5b6170;--accent:#e63946;--hero1:#14161d;--hero2:#2a1a24;--line:#e2e4ea;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0c0d11;--surface:#16181f;--text:#f1f2f5;--muted:#9aa0af;--line:#262a35;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0c0d11;--surface:#16181f;--text:#f1f2f5;--muted:#9aa0af;--line:#262a35;color-scheme:dark}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+.wrap{max-width:1100px;margin:auto;padding:0 20px}
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 85%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
+.logo{font-weight:800;letter-spacing:.12em}.logo b{color:var(--accent)}
+nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:14px}
+nav a:hover{color:var(--text)}
+.btn{display:inline-block;background:var(--accent);color:#fff;border:0;padding:14px 28px;border-radius:999px;font-weight:600;font-size:15px;cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(230,57,70,.4)}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.35);margin-left:10px}
+.hero{background:radial-gradient(circle at 75% 40%,#5a1f2c 0,transparent 55%),linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;padding:70px 0 40px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:30px;align-items:center}
+.tag{display:inline-block;border:1px solid rgba(255,255,255,.25);padding:4px 14px;border-radius:999px;font-size:13px;margin-bottom:18px;color:#ffb3b9}
+h1{font-size:clamp(34px,5vw,58px);line-height:1.08;margin-bottom:18px}
+h1 span{color:var(--accent)}
+.hero p{color:#c9ccd6;margin-bottom:28px;max-width:440px}
+.hero .car{filter:drop-shadow(0 30px 30px rgba(0,0,0,.6));animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:-30px;position:relative}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;text-align:center}
+.stat b{font-size:28px;color:var(--accent);display:block}
+.stat span{color:var(--muted);font-size:14px}
+section{padding:80px 0}
+h2{font-size:clamp(26px,3.5vw,38px);margin-bottom:10px}
+.sub{color:var(--muted);margin-bottom:36px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.18)}
+.pic{padding:24px 16px 8px;background:linear-gradient(160deg,var(--c1),var(--c2))}
+.info{padding:18px 20px 22px}
+.info h3{font-size:19px}.info small{color:var(--muted)}
+.price{display:flex;justify-content:space-between;align-items:center;margin-top:14px}
+.price b{font-size:20px}
+.price a{color:var(--accent);font-weight:600;text-decoration:none;font-size:14px}
+.feat{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+.f{padding:26px;border-radius:18px;background:var(--surface);border:1px solid var(--line)}
+.f i{font-style:normal;font-size:30px;display:block;margin-bottom:10px}
+.f p{color:var(--muted);font-size:14px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:30px;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:34px}
+label{display:block;font-size:14px;color:var(--muted);margin:14px 0 6px}
+label output{float:right;color:var(--text);font-weight:600}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.res{background:linear-gradient(135deg,var(--hero1),var(--hero2));color:#fff;border-radius:18px;padding:30px;display:flex;flex-direction:column;justify-content:center;text-align:center}
+.res b{font-size:40px;color:#ff6b78;display:block;margin:6px 0}
+.form{max-width:560px;display:grid;gap:12px}
+input[type=text],input[type=tel],select{width:100%;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--text);font-size:15px}
+#ok{display:none;color:#2fb36b;font-weight:600}
+footer{border-top:1px solid var(--line);padding:26px 0;text-align:center;color:var(--muted);font-size:14px}
+.rv{opacity:0;transform:translateY(24px);transition:.7s}.rv.on{opacity:1;transform:none}
+@media(max-width:800px){.hero .wrap,.calc{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}nav a:not(.keep){display:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+<symbol id="car" viewBox="0 0 400 150">
+<path d="M20 106 L30 86 Q40 78 82 74 L122 50 Q138 40 172 38 L240 38 Q272 40 292 60 L332 72 Q372 78 382 100 L384 112 Q384 121 374 121 L28 121 Q18 121 20 106Z" fill="currentColor"/>
+<path d="M136 72 L166 50 L236 50 Q256 52 270 72Z" fill="#fff" opacity=".35"/>
+<path d="M200 50 V72" stroke="currentColor" stroke-width="3"/>
+<rect x="352" y="88" width="24" height="8" rx="4" fill="#ffe9a8"/>
+<rect x="22" y="92" width="16" height="7" rx="3" fill="#ff4d5a"/>
+<circle cx="95" cy="121" r="26" fill="#0b0c10"/><circle cx="95" cy="121" r="12" fill="#b9bdc9"/>
+<circle cx="305" cy="121" r="26" fill="#0b0c10"/><circle cx="305" cy="121" r="12" fill="#b9bdc9"/>
+</symbol>
+</svg>
+
+<header><div class="wrap">
+<div class="logo">AURA<b>•</b>MOTORS</div>
+<nav><a href="#catalog">Каталог</a><a href="#why">Артықшылық</a><a href="#credit">Несие</a><a class="keep" href="#contact">Байланыс</a></nav>
+</div></header>
+
+<div class="hero"><div class="wrap">
+<div>
+<span class="tag">★ Ресми дилер · Кепілдік 5 жыл</span>
+<h1>Арманыңыздағы <span>көлікті</span> бүгін таңдаңыз</h1>
+<p>Жаңа және жүрісі аз көліктер, тез рәсімдеу, ыңғайлы несие және тест-драйв — бәрі бір жерде.</p>
+<a class="btn" href="#catalog">Каталогты көру</a><a class="btn ghost" href="#contact">Тест-драйвқа жазылу</a>
+</div>
+<svg class="car" viewBox="0 0 400 150" style="color:#e63946;width:100%"><use href="#car"/></svg>
+</div></div>
+
+<div class="wrap stats rv">
+<div class="stat"><b data-n="1500">0</b><span>сатылған көлік</span></div>
+<div class="stat"><b data-n="12">0</b><span>жыл нарықта</span></div>
+<div class="stat"><b data-n="30">0</b><span>брендтер</span></div>
+<div class="stat"><b data-n="98">0</b><span>% қанағаттанған клиент</span></div>
+</div>
+
+<section id="catalog"><div class="wrap">
+<h2 class="rv">Танымал модельдер</h2><p class="sub rv">Қоймадағы ең сұранысқа ие көліктер</p>
+<div class="cards">
+<div class="card rv"><div class="pic" style="--c1:#1d3557;--c2:#457b9d"><svg viewBox="0 0 400 150" style="color:#1d3557;filter:brightness(1.6)"><use href="#car"/></svg></div><div class="info"><h3>Aura S-Class</h3><small>Седан · 2025 · Автомат</small><div class="price"><b>18 900 000 ₸</b><a href="#contact">Толығырақ →</a></div></div></div>
+<div class="card rv"><div class="pic" style="--c1:#6a040f;--c2:#d00000"><svg viewBox="0 0 400 150" style="color:#f1f1f1"><use href="#car"/></svg></div><div class="info"><h3>Aura Sport GT</h3><small>Купе · 2025 · 3.0 турбо</small><div class="price"><b>27 500 000 ₸</b><a href="#contact">Толығырақ →</a></div></div></div>
+<div class="card rv"><div class="pic" style="--c1:#1b4332;--c2:#52b788"><svg viewBox="0 0 400 150" style="color:#0f2a20;filter:brightness(1.8)"><use href="#car"/></svg></div><div class="info"><h3>Aura X Crossover</h3><small>Кроссовер · 2024 · 4WD</small><div class="price"><b>21 300 000 ₸</b><a href="#contact">Толығырақ →</a></div></div></div>
+</div></div></section>
+
+<section id="why" style="padding-top:0"><div class="wrap">
+<h2 class="rv">Неге бізді таңдайды?</h2><p class="sub rv">Сенімді сервис — әр қадамда</p>
+<div class="feat">
+<div class="f rv"><i>🛡️</i><h3>Кепілдік</h3><p>Барлық көлікке ресми кепілдік және толық техникалық тексеру.</p></div>
+<div class="f rv"><i>⚡</i><h3>Жылдам рәсімдеу</h3><p>Құжаттар 1 күнде дайын, артық бюрократиясыз.</p></div>
+<div class="f rv"><i>💳</i><h3>Несие / лизинг</h3><p>Бастапқы жарнасыз және төмен пайызбен ұсыныстар.</p></div>
+<div class="f rv"><i>🔄</i><h3>Trade-in</h3><p>Ескі көлігіңізді таза бағамен айырбастаңыз.</p></div>
+</div></div></section>
+
+<section id="credit" style="padding-top:0"><div class="wrap">
+<h2 class="rv">Несие калькуляторы</h2><p class="sub rv">Айлық төлемді бірден есептеңіз (жылдық 15%)</p>
+<div class="calc rv">
+<div>
+<label>Көлік бағасы <output id="o1"></output></label><input id="price" type="range" min="5000000" max="40000000" step="500000" value="18000000">
+<label>Бастапқы жарна <output id="o2"></output></label><input id="down" type="range" min="0" max="50" step="5" value="20">
+<label>Мерзімі <output id="o3"></output></label><input id="term" type="range" min="12" max="84" step="12" value="48">
+</div>
+<div class="res"><span>Айлық төлем</span><b id="pay">—</b><span id="det" style="color:#c9ccd6;font-size:14px"></span></div>
+</div></div></section>
+
+<section id="contact" style="padding-top:0"><div class="wrap">
+<h2 class="rv">Тест-драйвқа жазылыңыз</h2><p class="sub rv">Нөміріңізді қалдырыңыз — 15 минутта хабарласамыз</p>
+<div class="form rv" id="f">
+<input type="text" id="nm" placeholder="Атыңыз">
+<input type="tel" id="ph" placeholder="+7 (___) ___-__-__">
+<select id="md"><option>Aura S-Class</option><option>Aura Sport GT</option><option>Aura X Crossover</option></select>
+<button class="btn" id="send" type="button">Жіберу</button>
+<p id="ok">✓ Рахмет! Жақын арада хабарласамыз.</p>
+</div></div></section>
+
+<footer>© 2026 AURA Motors · Күн сайын 09:00–20:00 · Қызмет көрсету сапасы — біздің басты міндет</footer>
+
+<script>
+const $=id=>document.getElementById(id),fmt=n=>Math.round(n).toLocaleString('ru-RU').replace(/,/g,' ')+' ₸';
+function calc(){const p=+$('price').value,d=+$('down').value,t=+$('term').value,loan=p*(1-d/100),r=.15/12,m=loan*r/(1-Math.pow(1+r,-t));
+$('o1').textContent=fmt(p);$('o2').textContent=d+'% ('+fmt(p*d/100)+')';$('o3').textContent=t+' ай';
+$('pay').textContent=fmt(m);$('det').textContent='Жалпы төлем: '+fmt(m*t+p*d/100)}
+['price','down','term'].forEach(i=>$(i).addEventListener('input',calc));calc();
+$('send').onclick=()=>{if($('nm').value.trim()&&$('ph').value.trim().length>=6){$('ok').style.display='block';$('nm').value=$('ph').value=''}else alert('Атыңыз бен телефоныңызды толтырыңыз')};
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('on');
+e.target.querySelectorAll('[data-n]').forEach(c=>{const n=+c.dataset.n;let k=0;const s=setInterval(()=>{k+=Math.ceil(n/40);if(k>=n){k=n;clearInterval(s)}c.textContent=k},30)});io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv').forEach(e=>io.observe(e));
+</script>
+</body>
+</html>
